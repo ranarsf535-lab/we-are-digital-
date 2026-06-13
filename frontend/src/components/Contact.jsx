@@ -33,15 +33,15 @@ function Contact() {
     <div className="relative py-28 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden" data-aos="fade-up">
 
       {/* Glow Effects */}
-      <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-3xl rounded-full -top-20 -left-20 animate-float"></div>
+      <div className="absolute w-[500px] h-[500px] bg-purple-600/20 blur-3xl rounded-full -top-20 -left-20 animate-float"></div>
       <div className="absolute w-[400px] h-[400px] bg-purple-500/20 blur-3xl rounded-full -bottom-20 -right-20 animate-floatSlow"></div>
 
       <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
 
         {/* LEFT */}
         <div className="space-y-6">
-          <h2 className="text-5xl font-bold leading-tight">
-            Let’s Build Something <span className="text-blue-400">Powerful</span>
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+            Let’s Build Something <span className="text-purple-400">Powerful</span>
           </h2>
 
           <p className="text-gray-300 text-lg">
@@ -57,7 +57,7 @@ function Contact() {
         </div>
 
         {/* RIGHT - FORM */}
-        <div className="backdrop-blur-xl bg-white/10 border border-white/20 p-10 rounded-3xl shadow-2xl transition hover:shadow-blue-500/20">
+        <div className="backdrop-blur-xl bg-white/10 border border-white/20 p-10 rounded-3xl shadow-2xl transition hover:shadow-purple-600/20">
 
           <form className="space-y-6" onSubmit={handleSubmit}>
 
@@ -69,9 +69,9 @@ function Contact() {
                 value={form.name}
                 onChange={handleChange}
                 required
-                className="peer w-full bg-transparent border-b border-gray-400 text-white py-2 focus:outline-none focus:border-blue-400"
+                className="peer w-full bg-transparent border-b border-gray-400 text-white py-2 focus:outline-none focus:border-purple-400"
               />
-              <label className="absolute left-0 top-2 text-gray-400 text-sm transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-blue-400 peer-valid:-top-4 peer-valid:text-xs">
+              <label className="absolute left-0 top-2 text-gray-400 text-sm transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-purple-400 peer-valid:-top-4 peer-valid:text-xs">
                 Your Name
               </label>
             </div>
@@ -84,9 +84,9 @@ function Contact() {
                 value={form.email}
                 onChange={handleChange}
                 required
-                className="peer w-full bg-transparent border-b border-gray-400 text-white py-2 focus:outline-none focus:border-blue-400"
+                className="peer w-full bg-transparent border-b border-gray-400 text-white py-2 focus:outline-none focus:border-purple-400"
               />
-              <label className="absolute left-0 top-2 text-gray-400 text-sm transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-blue-400 peer-valid:-top-4 peer-valid:text-xs">
+              <label className="absolute left-0 top-2 text-gray-400 text-sm transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-purple-400 peer-valid:-top-4 peer-valid:text-xs">
                 Your Email
               </label>
             </div>
@@ -99,9 +99,9 @@ function Contact() {
                 value={form.message}
                 onChange={handleChange}
                 required
-                className="peer w-full bg-transparent border-b border-gray-400 text-white py-2 focus:outline-none focus:border-blue-400"
+                className="peer w-full bg-transparent border-b border-gray-400 text-white py-2 focus:outline-none focus:border-purple-400"
               ></textarea>
-              <label className="absolute left-0 top-2 text-gray-400 text-sm transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-blue-400 peer-valid:-top-4 peer-valid:text-xs">
+              <label className="absolute left-0 top-2 text-gray-400 text-sm transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-purple-400 peer-valid:-top-4 peer-valid:text-xs">
                 Your Message
               </label>
             </div>
@@ -110,7 +110,7 @@ function Contact() {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full py-3 rounded-xl font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition duration-300 shadow-lg hover:shadow-purple-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3 rounded-xl font-medium bg-gradient-to-r from-purple-700 to-purple-500 hover:from-purple-800 hover:to-purple-600 transition duration-300 shadow-lg hover:shadow-purple-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === "loading" ? "Sending..." : "Send Message 🚀"}
             </button>

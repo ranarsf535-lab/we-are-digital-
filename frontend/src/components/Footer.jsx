@@ -5,7 +5,7 @@ function Footer() {
     <footer className="relative bg-black text-white py-20 px-6 overflow-hidden">
 
       {/* Glow background */}
-      <div className="absolute w-[450px] h-[450px] bg-blue-500/10 blur-3xl rounded-full -top-20 -left-20"></div>
+      <div className="absolute w-[450px] h-[450px] bg-purple-600/10 blur-3xl rounded-full -top-20 -left-20"></div>
       <div className="absolute w-[350px] h-[350px] bg-purple-500/10 blur-3xl rounded-full -bottom-20 -right-20"></div>
 
       <div className="relative max-w-6xl mx-auto grid md:grid-cols-4 gap-10">
@@ -13,8 +13,8 @@ function Footer() {
         {/* BRAND */}
         <div className="md:col-span-1">
           <div className="flex items-center gap-3">
-            <div className="h-12 w-12 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-lg">
-              <img src="/images/logo.jpg" alt="WE ARE DIGITAL" className="h-9 w-9" />
+            <div className="h-10 w-10 flex items-center justify-center bg-gray-800 rounded-lg overflow-hidden">
+              <img src="/images/logo_final.png" alt="WE ARE DIGITAL" className="h-full w-full object-cover" />
             </div>
             <h2 className="text-2xl font-bold">WE ARE DIGITAL</h2>
           </div>
@@ -28,7 +28,7 @@ function Footer() {
           {/* Social Icons */}
           <div className="flex gap-4 mt-6">
 
-            <div className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-gray-300 hover:text-white hover:bg-blue-500/30 transition cursor-pointer">
+            <div className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-gray-300 hover:text-white hover:bg-purple-600/30 transition cursor-pointer">
               <FaFacebookF size={14} />
             </div>
 
@@ -36,7 +36,7 @@ function Footer() {
               <FaInstagram size={14} />
             </div>
 
-            <div className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-gray-300 hover:text-white hover:bg-blue-400/30 transition cursor-pointer">
+            <div className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-gray-300 hover:text-white hover:bg-purple-500/30 transition cursor-pointer">
               <FaLinkedinIn size={14} />
             </div>
 

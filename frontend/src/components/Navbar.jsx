@@ -47,8 +47,8 @@ function Navbar() {
 
         {/* Logo */}
         <a href="#" className="flex items-center gap-3">
-          <div className="h-10 w-10 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-lg">
-            <img src="/images/logo.jpg" alt="WE ARE DIGITAL" className="h-8 w-8" />
+          <div className="h-9 w-9 flex items-center justify-center bg-gray-800 rounded-lg overflow-hidden">
+            <img src="/images/logo_final.png" alt="WE ARE DIGITAL" className="h-full w-full object-cover" />
           </div>
           <h1 className="text-white font-bold text-lg tracking-wide">WE ARE DIGITAL</h1>
         </a>
@@ -108,7 +108,7 @@ function Navbar() {
           <p><a href="#projects">Projects</a></p>
           <p><a href="#contact">Contact</a></p>
 
-          <button className="w-full mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg">
+          <button className="w-full mt-4 bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg">
             Get Started
           </button>
 

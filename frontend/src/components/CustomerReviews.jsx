@@ -20,13 +20,13 @@ function CustomerReviews() {
     <div className="relative py-24 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden" data-aos="fade-up">
 
       {/* Glow effects */}
-      <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-3xl rounded-full -top-20 -left-20"></div>
+      <div className="absolute w-[500px] h-[500px] bg-purple-600/20 blur-3xl rounded-full -top-20 -left-20"></div>
       <div className="absolute w-[400px] h-[400px] bg-purple-500/20 blur-3xl rounded-full -bottom-20 -right-20"></div>
 
       <div className="relative max-w-6xl mx-auto text-center">
 
         {/* Heading */}
-        <h2 className="text-4xl md:text-5xl font-bold">
+        <h2 className="text-3xl md:text-4xl font-bold">
           What Our Clients Say
         </h2>
 
@@ -39,7 +39,7 @@ function CustomerReviews() {
 
           {loading && (
             <div className="col-span-full flex justify-center py-12">
-              <div className="w-10 h-10 border-4 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-10 h-10 border-4 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
             </div>
           )}
 
@@ -50,7 +50,7 @@ function CustomerReviews() {
           {!loading && !error && reviews.map((item) => (
             <div
               key={item.id}
-              className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 text-left shadow-lg hover:shadow-blue-500/20 hover:-translate-y-2 transition duration-300"
+              className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 text-left shadow-lg hover:shadow-purple-600/20 hover:-translate-y-2 transition duration-300"
             >
               {/* Stars */}
               <div className="text-yellow-400 text-sm mb-3">
