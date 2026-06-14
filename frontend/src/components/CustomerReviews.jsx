@@ -1,27 +1,20 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 function CustomerReviews() {
 
-  const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/reviews/`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load reviews");
-        return res.json();
-      })
-      .then((data) => setReviews(data))
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
-  }, []);
+  const { data: reviews, isLoading: loading, error } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: () =>
+      fetch(`${import.meta.env.VITE_API_URL}/api/reviews/`).then((r) => {
+        if (!r.ok) throw new Error("Failed to load reviews");
+        return r.json();
+      }),
+  });
 
   return (
-    <div className="relative py-24 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden" data-aos="fade-up">
+    <div className="relative py-24 px-6 bg-gray-950 text-white overflow-hidden" data-aos="fade-up">
 
-      {/* Glow effects */}
-      <div className="absolute w-[500px] h-[500px] bg-purple-600/20 blur-3xl rounded-full -top-20 -left-20"></div>
-      <div className="absolute w-[400px] h-[400px] bg-purple-500/20 blur-3xl rounded-full -bottom-20 -right-20"></div>
+      <div className="absolute w-[400px] h-[400px] bg-purple-600/10 blur-3xl rounded-full bottom-20 left-1/2 -translate-x-1/2"></div>
 
       <div className="relative max-w-6xl mx-auto text-center">
 

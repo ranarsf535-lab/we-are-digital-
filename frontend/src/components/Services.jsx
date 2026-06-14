@@ -1,29 +1,21 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 function Services() {
 
-  const [services, setServices] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/services/`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load services");
-        return res.json();
-      })
-      .then((data) => setServices(data))
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
-  }, []);
+  const { data: services, isLoading: loading, error } = useQuery({
+    queryKey: ["services"],
+    queryFn: () =>
+      fetch(`${import.meta.env.VITE_API_URL}/api/services/`).then((r) => {
+        if (!r.ok) throw new Error("Failed to load services");
+        return r.json();
+      }),
+  });
 
 
   return (
     <div className="relative py-24 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden" data-aos="fade-up">
 
-      {/* Glow background */}
-      <div className="absolute w-[500px] h-[500px] bg-purple-600/20 blur-3xl rounded-full -top-20 -left-20"></div>
-      <div className="absolute w-[400px] h-[400px] bg-purple-500/20 blur-3xl rounded-full -bottom-20 -right-20"></div>
+      <div className="absolute w-[500px] h-[500px] bg-purple-600/15 blur-3xl rounded-full -top-40 right-20"></div>
 
       <div className="relative max-w-6xl mx-auto text-center">
 
@@ -64,9 +56,9 @@ function Services() {
                 {item.description}
               </p>
 
-              <div className="mt-5 text-purple-400 text-sm font-medium cursor-pointer">
+              <a href="#contact" className="mt-5 text-purple-400 text-sm font-medium block hover:text-purple-300 transition">
                 Learn more →
-              </div>
+              </a>
             </div>
           ))}
 

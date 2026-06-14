@@ -1,29 +1,23 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 function Projects() {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/projects/`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load projects");
-        return res.json();
-      })
-      .then((data) => setProjects(data))
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
-  }, []);
+  const { data: projects, isLoading: loading, error } = useQuery({
+    queryKey: ["projects"],
+    queryFn: () =>
+      fetch(`${import.meta.env.VITE_API_URL}/api/projects/`).then((r) => {
+        if (!r.ok) throw new Error("Failed to load projects");
+        return r.json();
+      }),
+  });
 
   return (
     <div
       className="relative py-24 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden"
       data-aos="fade-up"
     >
-      {/* Glow background */}
-      <div className="absolute w-[500px] h-[500px] bg-purple-600/20 blur-3xl rounded-full -top-20 -left-20"></div>
-      <div className="absolute w-[400px] h-[400px] bg-purple-500/20 blur-3xl rounded-full -bottom-20 -right-20"></div>
+      <div className="absolute w-[500px] h-[500px] bg-purple-600/10 blur-3xl rounded-full top-40 -right-40"></div>
+      <div className="absolute w-[300px] h-[300px] bg-purple-500/10 blur-3xl rounded-full -bottom-20 left-20"></div>
 
       <div className="relative max-w-6xl mx-auto text-center">
         {/* Heading */}
@@ -63,6 +57,13 @@ function Projects() {
               {/* Overlay */}
               <div className="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition duration-300"></div>
 
+              {/* Metric Badge */}
+              {item.metric && (
+                <div className="absolute top-4 right-4 bg-purple-600/90 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+                  {item.metric}
+                </div>
+              )}
+
               {/* Content */}
               <div className="absolute bottom-0 p-6 text-left">
                 <h3 className="text-2xl font-semibold">
@@ -73,9 +74,9 @@ function Projects() {
                   {item.description}
                 </p>
 
-                <button className="mt-4 text-purple-400 text-sm font-medium hover:text-purple-300 transition">
+                <a href="#contact" className="mt-4 text-purple-400 text-sm font-medium block hover:text-purple-300 transition">
                   View Project →
-                </button>
+                </a>
               </div>
             </div>
           ))}

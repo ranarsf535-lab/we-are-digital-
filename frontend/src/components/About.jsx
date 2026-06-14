@@ -1,10 +1,9 @@
 function About() {
   return (
-    <div className="relative py-28 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden" data-aos="fade-right">
+    <div className="relative py-28 px-6 bg-gray-950 text-white overflow-hidden" data-aos="fade-right">
 
-      {/* Glow Effects */}
-      <div className="absolute w-[500px] h-[500px] bg-purple-600/20 blur-3xl rounded-full -top-20 -left-20 animate-float"></div>
-      <div className="absolute w-[400px] h-[400px] bg-purple-500/20 blur-3xl rounded-full -bottom-20 -right-20 animate-floatSlow"></div>
+      {/* Subtle top-right glow only */}
+      <div className="absolute w-[450px] h-[450px] bg-purple-600/10 blur-3xl rounded-full -top-40 -right-40"></div>
 
       <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
 
@@ -78,6 +77,36 @@ function About() {
 
         </div>
 
+      </div>
+
+      {/* TEAM SECTION */}
+      <div className="relative max-w-6xl mx-auto mt-24 text-center">
+        <h3 className="text-2xl md:text-3xl font-bold">Meet the Team</h3>
+        <p className="text-gray-400 mt-3">The people behind the pixels</p>
+
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-6">
+          {[
+            { name: "Rana Sufyan", role: "Founder & CEO", img: "/images/avatar-1.jpg" },
+            { name: "Ayesha Khan", role: "Creative Director", img: "/images/avatar-2.jpg" },
+            { name: "Usman Ali", role: "Lead Developer", img: "/images/avatar-3.jpg" },
+            { name: "Fatima Zara", role: "Social Media Manager", img: "/images/avatar-4.jpg" },
+            { name: "Hassan Raza", role: "SEO Specialist", img: "/images/avatar-5.jpg" },
+            { name: "Zainab Noor", role: "UI/UX Designer", img: "/images/avatar-6.jpg" },
+          ].map((member) => (
+            <div
+              key={member.name}
+              className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition duration-300"
+            >
+              <img
+                src={member.img}
+                alt={member.name}
+                className="w-20 h-20 rounded-full object-cover mx-auto"
+              />
+              <h4 className="font-semibold mt-4">{member.name}</h4>
+              <p className="text-gray-400 text-sm">{member.role}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
     </div>

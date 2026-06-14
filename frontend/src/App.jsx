@@ -3,12 +3,15 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import ClientLogos from "./components/ClientLogos";
 import Services from "./components/Services";
 import About from "./components/About";
 import Stats from "./components/Stats";
 import Projects from "./components/Projects";
 import CustomerReviews from "./components/CustomerReviews";
+import BlogSection from "./components/BlogSection";
 import Contact from "./components/Contact";
+import BackToTop from "./components/BackToTop";
 import Footer from "./components/Footer";
 
 function App() {
@@ -27,35 +30,43 @@ function App() {
 
       <Navbar />
 
-      <div id="home" className="scroll-mt-18">
+      <div id="home">
         <Hero />
       </div>
 
-      <div id="about" className="scroll-mt-18">
+      <div id="about">
         <About />
       </div>
 
-      <div id="stats" className="scroll-mt-18">
+      <ClientLogos />
+
+      <div id="stats">
         <Stats />
       </div>
 
-      <div id="services" className="scroll-mt-18">
+      <div id="services">
         <Services />
       </div>
 
-      <div id="projects" className="scroll-mt-18">
+      <div id="projects">
         <Projects />
       </div>
 
-      <div id="reviews" className="scroll-mt-18">
+      <div id="reviews">
         <CustomerReviews />
       </div>
 
-      <div id="contact" className="scroll-mt-18">
+      <div id="blog">
+        <BlogSection />
+      </div>
+
+      <div id="contact">
         <Contact />
       </div>
 
       <Footer />
+
+      <BackToTop />
 
     </div>
   );

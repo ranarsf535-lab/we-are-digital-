@@ -1,28 +1,29 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 function Stats() {
-  const [stats, setStats] = useState([]);
   const [count, setCount] = useState({});
-  const [loading, setLoading] = useState(true);
+
+  const { data: stats, isLoading: loading } = useQuery({
+    queryKey: ["stats"],
+    queryFn: () =>
+      fetch(`${import.meta.env.VITE_API_URL}/api/homepage/stats/`).then((r) => {
+        if (!r.ok) throw new Error("Failed to load stats");
+        return r.json();
+      }),
+  });
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/homepage/stats/`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load stats");
-        return res.json();
-      })
-      .then((data) => {
-        setStats(data);
-        const initial = {};
-        data.forEach((item) => { initial[item.key] = 0; });
-        setCount(initial);
-      })
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, []);
+    if (!stats) return;
+    setCount((prev) => {
+      const next = { ...prev };
+      stats.forEach((item) => { if (next[item.key] === undefined) next[item.key] = 0; });
+      return next;
+    });
+  }, [stats]);
 
   useEffect(() => {
-    if (stats.length === 0) return;
+    if (!stats || stats.length === 0) return;
     const interval = setInterval(() => {
       setCount((prev) => {
         const updated = { ...prev };
