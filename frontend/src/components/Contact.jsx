@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { postJSON } from "../api";
 
 const services = [
   { value: "", label: "Select a service..." },
@@ -23,14 +24,7 @@ function Contact() {
   });
 
   const mutation = useMutation({
-    mutationFn: (data) =>
-      fetch(`${import.meta.env.VITE_API_URL}/api/contact/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      }).then((res) => {
-        if (!res.ok) throw new Error("Failed to send");
-      }),
+    mutationFn: (data) => postJSON("/api/contact/", data),
     onSuccess: () => {
       setForm({ name: "", email: "", phone: "", company: "", service: "", message: "" });
     },
@@ -170,29 +164,38 @@ function Contact() {
 
             {/* Button */}
             {mutation.isSuccess ? (
-              <div className="flex items-center justify-center gap-3 py-3 text-green-400 font-medium">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                  <polyline points="22 4 12 14.01 9 11.01" />
-                </svg>
-                Message sent! We'll be in touch soon.
-              </div>
-            ) : (
-              <button
-                type="submit"
-                disabled={mutation.isPending}
-                className="w-full py-3 rounded-xl font-medium bg-gradient-to-r from-purple-700 to-purple-500 hover:from-purple-800 hover:to-purple-600 transition duration-300 shadow-lg hover:shadow-purple-500/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              >
-                {mutation.isPending ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Sending...
-                  </>
-                ) : (
-                  "Send Message"
-                )}
-              </button>
-            )}
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center justify-center gap-3 py-3 text-green-400 font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                    Message sent! We'll be in touch soon.
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => mutation.reset()}
+                    className="w-full py-2 rounded-xl font-medium border border-gray-500 text-gray-300 hover:bg-white/5 transition"
+                  >
+                    Send Another
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={mutation.isPending}
+                  className="w-full py-3 rounded-xl font-medium bg-gradient-to-r from-purple-700 to-purple-500 hover:from-purple-800 hover:to-purple-600 transition duration-300 shadow-lg hover:shadow-purple-500/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {mutation.isPending ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    "Send Message"
+                  )}
+                </button>
+              )}
 
             {mutation.isError && (
               <p className="text-red-400 text-sm text-center">Something went wrong. Please try again.</p>

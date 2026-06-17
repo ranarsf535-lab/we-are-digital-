@@ -28,35 +28,22 @@ function About() {
 
           {/* FEATURES */}
           <div className="mt-10 grid grid-cols-2 gap-6">
-            <div className="backdrop-blur-lg bg-white/10 border border-white/20 p-5 rounded-xl hover:shadow-purple-600/20 transition">
-
-              <h4 className="font-semibold">⚡ Fast Execution</h4>
-              <p className="text-sm text-gray-400 mt-1">
-                Efficient delivery without compromising quality.
-              </p>
-            </div>
-
-            <div className="backdrop-blur-lg bg-white/10 border border-white/20 p-5 rounded-xl hover:shadow-purple-500/20 transition">
-              <h4 className="font-semibold">🎨 Creative Design</h4>
-              <p className="text-sm text-gray-400 mt-1">
-                Modern UI/UX built for real users.
-              </p>
-            </div>
-            <div className="backdrop-blur-lg bg-white/10 border border-white/20 p-5 rounded-xl hover:shadow-purple-600/20 transition">
-
-              <h4 className="font-semibold">🚀 Scalable Systems</h4>
-              <p className="text-sm text-gray-400 mt-1">
-                Built to grow with your business.
-              </p>
-            </div>
-
-            <div className="backdrop-blur-lg bg-white/10 border border-white/20 p-5 rounded-xl hover:shadow-purple-500/20 transition">
-              <h4 className="font-semibold">🤝 Client Focus</h4>
-              <p className="text-sm text-gray-400 mt-1">
-                Your success is our priority.
-              </p>
-            </div>
-
+            {[
+              { icon: "⚡", title: "Fast Execution", desc: "Efficient delivery without compromising quality." },
+              { icon: "🎨", title: "Creative Design", desc: "Modern UI/UX built for real users." },
+              { icon: "🚀", title: "Scalable Systems", desc: "Built to grow with your business." },
+              { icon: "🤝", title: "Client Focus", desc: "Your success is our priority." },
+            ].map((f, i) => (
+              <div
+                key={f.title}
+                data-aos="fade-up"
+                data-aos-delay={i * 100}
+                className="backdrop-blur-lg bg-white/10 border border-white/20 p-5 rounded-xl hover:shadow-purple-600/20 transition"
+              >
+                <h4 className="font-semibold">{f.icon} {f.title}</h4>
+                <p className="text-sm text-gray-400 mt-1">{f.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -92,9 +79,11 @@ function About() {
             { name: "Fatima Zara", role: "Social Media Manager", img: "/images/avatar-4.jpg" },
             { name: "Hassan Raza", role: "SEO Specialist", img: "/images/avatar-5.jpg" },
             { name: "Zainab Noor", role: "UI/UX Designer", img: "/images/avatar-6.jpg" },
-          ].map((member) => (
+          ].map((member, i) => (
             <div
               key={member.name}
+              data-aos="fade-up"
+              data-aos-delay={i * 100}
               className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition duration-300"
             >
               <img

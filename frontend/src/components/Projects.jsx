@@ -1,14 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
+import { fetchJSON } from "../api";
+import { ProjectSkeleton } from "./Skeleton";
 
 function Projects() {
-
   const { data: projects, isLoading: loading, error } = useQuery({
     queryKey: ["projects"],
-    queryFn: () =>
-      fetch(`${import.meta.env.VITE_API_URL}/api/projects/`).then((r) => {
-        if (!r.ok) throw new Error("Failed to load projects");
-        return r.json();
-      }),
+    queryFn: () => fetchJSON("/api/projects/"),
   });
 
   return (
@@ -20,7 +18,6 @@ function Projects() {
       <div className="absolute w-[300px] h-[300px] bg-purple-500/10 blur-3xl rounded-full -bottom-20 left-20"></div>
 
       <div className="relative max-w-6xl mx-auto text-center">
-        {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-bold">
           Our Projects
         </h2>
@@ -29,30 +26,38 @@ function Projects() {
           Some of our recent work and creative solutions
         </p>
 
-        {/* Grid */}
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-8">
 
           {loading && (
-            <div className="col-span-full flex justify-center py-12">
-              <div className="w-10 h-10 border-4 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
-            </div>
+            <>
+              <ProjectSkeleton />
+              <ProjectSkeleton />
+            </>
           )}
 
           {error && (
-            <p className="col-span-full text-red-400 text-center py-12">{error}</p>
+            <p className="col-span-full text-red-400 text-center py-12">{error.message}</p>
           )}
 
-          {!loading && !error && projects.map((item) => (
+          {!loading && !error && projects.map((item, i) => (
             <div
               key={item.id}
-              className="relative group rounded-2xl overflow-hidden shadow-lg border border-white/10"
+              data-aos="flip-up"
+              data-aos-delay={i * 200}
+              className="relative group rounded-2xl overflow-hidden shadow-lg border border-white/10 hover:shadow-purple-600/30 transition-shadow duration-300"
             >
               {/* Image */}
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-72 object-cover group-hover:scale-110 transition duration-500"
-              />
+              {item.image ? (
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-72 object-cover group-hover:scale-110 transition duration-500"
+                />
+              ) : (
+                <div className="w-full h-72 bg-gray-800 flex items-center justify-center text-gray-500">
+                  No image
+                </div>
+              )}
 
               {/* Overlay */}
               <div className="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition duration-300"></div>
@@ -74,9 +79,9 @@ function Projects() {
                   {item.description}
                 </p>
 
-                <a href="#contact" className="mt-4 text-purple-400 text-sm font-medium block hover:text-purple-300 transition">
+                <Link to="/#contact" className="mt-4 text-purple-400 text-sm font-medium block hover:text-purple-300 transition">
                   View Project →
-                </a>
+                </Link>
               </div>
             </div>
           ))}

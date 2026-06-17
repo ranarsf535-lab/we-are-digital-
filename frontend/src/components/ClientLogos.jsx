@@ -12,9 +12,11 @@ function ClientLogos() {
           Trusted by innovative brands
         </p>
         <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-          {clients.map((name) => (
+          {clients.map((name, i) => (
             <div
               key={name}
+              data-aos="fade-up"
+              data-aos-delay={i * 80}
               className="text-gray-600 text-lg font-semibold tracking-wide hover:text-gray-400 transition-colors duration-300"
             >
               {name}

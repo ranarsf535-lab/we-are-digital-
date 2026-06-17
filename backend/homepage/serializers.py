@@ -4,9 +4,9 @@ from .models import HeroContent, Stat
 class HeroContentSerializer(serializers.ModelSerializer):
     class Meta:
         model = HeroContent
-        fields = '__all__'
+        fields = ['id', 'title', 'subtitle', 'images']
 
 class StatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stat
-        fields = '__all__'
+        fields = ['key', 'label', 'target', 'suffix', 'color']
