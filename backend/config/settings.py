@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'contact',
     'homepage',
     'blog',
+    'chatbot',
 ]
 
 MIDDLEWARE = [

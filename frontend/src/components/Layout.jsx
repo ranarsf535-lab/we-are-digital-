@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import BackToTop from "./BackToTop";
+import Chatbot from "./Chatbot";
 
 function Layout() {
   const { pathname, hash } = useLocation();
@@ -34,6 +35,7 @@ function Layout() {
       <Outlet />
       <Footer />
       <BackToTop />
+      <Chatbot />
     </div>
   );
 }
